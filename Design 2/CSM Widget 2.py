@@ -165,7 +165,7 @@ root.title("Chainsaw Man Timer")
 root.geometry('282x422')
 root.config(background='grey')
 root.attributes("-transparentcolor", "grey")
-
+root.call('wm', 'attributes', '.', '-topmost', '1')
 frame = Frame(root, width=50, height=30)
 frame.pack()
 frame.place(anchor='center', relx=0.5, rely=0.5)
