@@ -73,9 +73,9 @@ def round_rectangle(x1, y1, x2, y2, radius=25, **kwargs): # Creating a rounded r
 def move_window(event):
     root.geometry(f'+{event.x_root}+{event.y_root}')
 
-image = Image.open('csm poster.jpg')
+image = Image.open('Design 1\csm poster.jpg')
 new_image = image.resize((282, 422))
-new_image.save('csm poster.jpg')
+new_image.save('Design 1\csm poster.jpg')
 yy = True
 images = []
 
@@ -172,6 +172,15 @@ def CSM_timer():
         canvas.itemconfigure(timetxt2,text=f"Episode {date4 + 1}")
         root.update()
 
+
+def check():
+    x22 = var.get()
+    if x22 == 0:
+        root.call('wm', 'attributes', '.', '-topmost', '0')
+    if x22 == 1:
+        root.call('wm', 'attributes', '.', '-topmost', '1')
+
+
 bb = True
 root = Tk()
 root.overrideredirect(1)
@@ -181,21 +190,22 @@ root.title("Chainsaw Man Timer")
 root.geometry('282x422')
 root.config(background='grey')
 root.attributes("-transparentcolor", "grey")
-root.iconbitmap('csm icon.ico')
-root.call('wm', 'attributes', '.', '-topmost', '1')
+root.iconbitmap('Design 1\csm icon.ico')
+
 frame = Frame(root, width=50, height=30)
 frame.pack()
 frame.place(anchor='center', relx=0.5, rely=0.5)
 canvas = Canvas(root, bg="grey", highlightthickness=0)
 canvas.pack(fill=BOTH, expand=1)
-img = ImageTk.PhotoImage(Image.open("csm poster.jpg"))
-
+img = ImageTk.PhotoImage(Image.open("Design 1\csm poster.jpg"))
+var = IntVar()
 image_container = canvas.create_image(0,0,anchor="nw",image=img)
 create_rectangle(0, 0, 282, 40, fill='black', alpha=.5,outline="")
 timetxt = canvas.create_text(141,400,text="Test",font=("Edge Of Madness", 15),anchor="center",fill='white')
 timetxt2 = canvas.create_text(141,20,text="Test",font=("Nerve Agent", 20),anchor="center",fill='white')
 m = Menu(root, tearoff=0)
 m.add_command(label="Close",command=quit)
+m.add_checkbutton(label="Stay on top",onvalue=1, offvalue=0,variable=var,command=check)
 root.bind("<Button-3>", do_popup)
 tt = threading.Thread(target=CSM_timer)
 tt.setDaemon(True)

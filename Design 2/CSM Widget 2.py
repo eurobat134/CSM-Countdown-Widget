@@ -40,9 +40,9 @@ def round_rectangle(x1, y1, x2, y2, radius=25, **kwargs): # Creating a rounded r
 def move_window(event):
     root.geometry(f'+{event.x_root}+{event.y_root}')
 
-image = Image.open('csm poster.jpg')
+image = Image.open('Design 2\csm 103.png')
 new_image = image.resize((282, 422))
-new_image.save('csm poster.jpg')
+new_image.save('Design 2\csm 103.png')
 yy = True
 images = []
 
@@ -137,11 +137,16 @@ global Enter
 
 
 
-image = Image.open('csm 103.png')
+image = Image.open('Design 2\csm 103.png')
 new_image = image.resize((250, 50))
-new_image.save('csm 104.png')
+new_image.save('Design 2\csm 103.png')
 
-
+def check():
+    x22 = var.get()
+    if x22 == 0:
+        root.call('wm', 'attributes', '.', '-topmost', '0')
+    if x22 == 1:
+        root.call('wm', 'attributes', '.', '-topmost', '1')
 
 def do_popup(event):
     try:
@@ -162,22 +167,24 @@ root.overrideredirect(1)
 root.bind("<B1-Motion>", move_window)
 root.eval('tk::PlaceWindow . center')
 root.title("Chainsaw Man Timer")
+root.iconbitmap('Design 1\csm icon.ico')
 root.geometry('282x422')
 root.config(background='grey')
 root.attributes("-transparentcolor", "grey")
-root.call('wm', 'attributes', '.', '-topmost', '1')
 frame = Frame(root, width=50, height=30)
 frame.pack()
 frame.place(anchor='center', relx=0.5, rely=0.5)
 canvas = Canvas(root, bg="grey", highlightthickness=0)
 canvas.pack(fill=BOTH, expand=1)
-img = ImageTk.PhotoImage(Image.open("csm poster.jpg"))
-img2 = ImageTk.PhotoImage(Image.open("csm 104.png"))
+img = ImageTk.PhotoImage(Image.open("Design 2\csm poster.jpg"))
+img2 = ImageTk.PhotoImage(Image.open("Design 2\csm 103.png"))
 image_container = canvas.create_image(0,0,anchor="nw",image=img)
 
 image_container2 = canvas.create_image(138,40,anchor="center",image=img2)
 m = Menu(root, tearoff=0)
 m.add_command(label="Close",command=root.destroy)
+var = IntVar()
+m.add_checkbutton(label="Stay on top",onvalue=1, offvalue=0,variable=var,command=check)
 timetxt = canvas.create_text(141,400,text="Test",font=("Edge Of Madness", 15),anchor="center",fill='white')
 timetxt2 = canvas.create_text(141,375,text="Test",font=("Nerve Agent", 15),anchor="center",fill='white')
 root.bind("<Button-3>", do_popup)
