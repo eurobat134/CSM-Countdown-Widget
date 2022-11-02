@@ -181,6 +181,8 @@ def check():
         root.call('wm', 'attributes', '.', '-topmost', '1')
 
 
+
+
 bb = True
 root = Tk()
 root.overrideredirect(1)
